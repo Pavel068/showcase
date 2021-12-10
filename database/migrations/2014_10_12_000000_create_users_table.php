@@ -19,8 +19,14 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->enum('role', ['customer', 'partner', 'admin']);
+            $table->string('wallet')->nullable();
+            $table->decimal('balance', 10, 7)->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('tfa_secret')->nullable();
             $table->timestamps();
+
+            $table->foreign('parent_id')->references('id')->on('users');
         });
     }
 
