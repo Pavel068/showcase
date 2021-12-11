@@ -20,3 +20,6 @@ Route::post('/auth/register', [Controllers\AuthController::class, 'register']);
 Route::post('/auth/login', [Controllers\AuthController::class, 'login']);
 Route::get('/auth/me', [Controllers\AuthController::class, 'getMe']);
 Route::delete('/auth/logout', [Controllers\AuthController::class, 'logout']);
+
+Route::get('/system-settings', [Controllers\SystemSettingsController::class, 'index']);
+Route::get('/system-settings/customer-qr/{user_id}', [Controllers\SystemSettingsController::class, 'getQRCodeSVG']);

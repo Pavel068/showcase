@@ -11,37 +11,19 @@
                     <div class="card">
                         <div class="card-header">Настройки сервиса</div>
                         <div class="card-body">
-                            <table class="table table-striped">
+                            <table class="table table-striped" v-if="systemSettings">
                                 <tr>
                                     <th>Ключ</th>
                                     <th>Значение</th>
                                     <th>Мета</th>
                                 </tr>
-                                <tr>
-                                    <td>Комиссия сервиса (бесплатный тариф) (%)</td>
+                                <tr v-for="setting in systemSettings.data">
+                                    <td>{{ setting.key }}</td>
                                     <td>
-                                        <input class="form-control" type="text" value="5">
+                                        <input class="form-control" type="text" value="5" v-model="setting.value">
                                     </td>
                                     <td>
-                                        <textarea class="form-control" name="" cols="30" rows="3"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Комиссия сервиса (платный тариф) (%)</td>
-                                    <td>
-                                        <input class="form-control" type="text" value="5">
-                                    </td>
-                                    <td>
-                                        <textarea class="form-control" name="" cols="30" rows="3"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Начисления от рефералов (%)</td>
-                                    <td>
-                                        <input class="form-control" type="text" value="5">
-                                    </td>
-                                    <td>
-                                        <textarea class="form-control" name="" cols="30" rows="3"></textarea>
+                                        <textarea class="form-control" name="" cols="30" rows="3">{{ setting.meta }}</textarea>
                                     </td>
                                 </tr>
                             </table>
@@ -65,11 +47,11 @@
                                 </tr>
                                 <tr>
                                     <td>Комиссия за неделю</td>
-                                    <td>$10.246</td>
+                                    <td>0</td>
                                 </tr>
                                 <tr>
                                     <td>Сумма выплат</td>
-                                    <td>$10.246</td>
+                                    <td>0</td>
                                 </tr>
                             </table>
                         </div>
@@ -86,6 +68,19 @@ import TopMenu from "../components/TopMenu";
 export default {
     name: "Admin",
     components: {TopMenu},
+    data: () => {
+        return {
+            systemSettings: null,
+            form: {}
+        }
+    },
+    methods: {
+
+    },
+    async mounted() {
+        await this.$store.dispatch('getSystemSettings');
+        this.systemSettings = this.$store.getters.systemSettings;
+    }
 }
 </script>
 

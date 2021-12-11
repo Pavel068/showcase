@@ -18,13 +18,16 @@
                             <p>ДФА: <a href="">Включить</a></p>
                             <p>Рефералы: <span>13</span></p>
                             <p>Реферальная ссылка: <br> <span>https://127.0.0.1/signup/?parent_id={{ userData.id }}</span></p>
-                            <p>QR-код: <a href="">Ссылка</a></p>
+                            <p>QR-код: <br/>
+                                <span v-html="QRCode"></span>
+                            </p>
                         </div>
                     </div>
                     <div class="card mt-3">
                         <div class="card-header">Конструктор визитки</div>
                         <div class="card-body">
                             <img style="width: 100%" src="images/visit-example.png" alt="">
+                            <button class="mt-3 btn btn-primary">Сохранить</button>
                         </div>
                     </div>
                 </div>
@@ -64,12 +67,15 @@ export default {
     components: {TopMenu},
     data: () => {
         return {
-            userData: null
+            userData: null,
+            QRCode: null
         }
     },
     async mounted() {
         await this.$store.dispatch('getMe');
         this.userData = this.$store.getters.authorizedUser;
+        await this.$store.dispatch('getCustomerQR', this.userData.id);
+        this.QRCode = this.$store.getters.customerQR
     }
 }
 </script>
