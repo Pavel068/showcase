@@ -21,6 +21,11 @@
         .back-button {
             font-size: 14px !important;
         }
+
+        .card-header {
+            background-color: #060606 !important;
+            color: #fffff0 !important;
+        }
     </style>
 </head>
 

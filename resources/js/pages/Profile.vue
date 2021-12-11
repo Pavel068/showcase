@@ -12,9 +12,17 @@
                             <p class="lead">Имя Фамилия</p>
                             <p>Баланс: <span>1000</span> <a class="text-muted" href="">Вывести</a></p>
                             <p>Тариф: <span>Бесплатный</span></p>
+                            <p>Комиссия: <span>5%</span></p>
                             <p>ДФА: <a href="">Включить</a></p>
                             <p>Рефералы: <span>13</span></p>
+                            <p>Реферальная ссылка: <br> <span>https://127.0.0.1/signup/?parent_id=1</span></p>
                             <p>QR-код: <a href="">Ссылка</a></p>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-header">Конструктор визитки</div>
+                        <div class="card-body">
+                            <img style="width: 100%" src="images/visit-example.png" alt="">
                         </div>
                     </div>
                 </div>

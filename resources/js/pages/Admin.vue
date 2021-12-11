@@ -16,12 +16,30 @@
                                     <th>Мета</th>
                                 </tr>
                                 <tr>
-                                    <td>Комиссия сервиса (%)</td>
+                                    <td>Комиссия сервиса (бесплатный тариф) (%)</td>
                                     <td>
                                         <input class="form-control" type="text" value="5">
                                     </td>
                                     <td>
-                                        <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="form-control" name="" cols="30" rows="10"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Комиссия сервиса (платный тариф) (%)</td>
+                                    <td>
+                                        <input class="form-control" type="text" value="5">
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" name="" cols="30" rows="10"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Начисления от рефералов (%)</td>
+                                    <td>
+                                        <input class="form-control" type="text" value="5">
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" name="" cols="30" rows="10"></textarea>
                                     </td>
                                 </tr>
                             </table>
