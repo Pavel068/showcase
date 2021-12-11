@@ -26,7 +26,7 @@
 
                                 <button class="mt-3 btn btn-outline-primary" :disabled="isPasswordsNotEqual" @click="signup">Отправить</button>
 
-                                <div class="mt-3 text-danger" v-if="errors && errors.length">Ошибка заполнения формы</div>
+                                <div class="mt-3 text-danger" v-if="errors">Ошибка заполнения формы</div>
 
                                 <div class="mt-3 text-muted">
                                     Уже есть аккаунт? <router-link :to="{name: 'Login'}">Войти</router-link>
@@ -52,7 +52,7 @@ export default {
                 password: null,
                 password_repeat: null
             },
-            errors: []
+            errors: null
         }
     },
     computed: {

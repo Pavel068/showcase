@@ -1,6 +1,11 @@
 <template>
     <div class="body-wrap">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <TopMenu/>
+                </div>
+            </div>
             <div class="row mt-5">
                 <div class="col-md-1">
                     <button class="btn btn-secondary back-button" @click="$router.push({name: 'Index'})">Назад</button>
@@ -55,9 +60,11 @@
 </template>
 
 <script>
+import TopMenu from "../components/TopMenu";
 
 export default {
     name: "Profile",
+    components: {TopMenu},
     data: () => {
         return {
             userData: null
