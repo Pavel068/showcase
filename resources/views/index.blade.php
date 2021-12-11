@@ -14,6 +14,10 @@
             color: #8A94A7 !important;
         }
 
+        .card {
+            margin-top: 10px !important;
+        }
+
         .card, card * {
             color: #242830 !important;
         }

@@ -26,3 +26,5 @@ Route::get('/system-settings/customer-qr/{user_id}', [Controllers\SystemSettings
 
 Route::post('/payments/payment_callback', [Controllers\BalanceChangesController::class, 'paymentCallback']);
 Route::post('/payments/withdraw', [Controllers\BalanceChangesController::class, 'withdraw']);
+
+Route::get('/analytics/customer', [Controllers\AnalyticsController::class, 'customerAnalytics']);

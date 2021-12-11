@@ -16,7 +16,7 @@
                             <p>Тариф: <span>Бесплатный</span></p>
                             <p>Комиссия: <span>5%</span></p>
                             <p>ДФА: <a href="">Включить</a></p>
-                            <p>Рефералы: <span>13</span></p>
+                            <p>Рефералы: <span>0</span></p>
                             <p>Реферальная ссылка: <br> <span>https://127.0.0.1/signup/?parent_id={{ userData.id }}</span></p>
                             <p>QR-код: <br/>
                                 <span v-html="QRCode"></span>
@@ -35,21 +35,13 @@
                     <div class="card">
                         <div class="card-header">Аналитика</div>
                         <div class="card-body">
-                            <div class="card-header">Баланс</div>
-                            <div class="card-body">
-                                <img src="images/basic-line-chart.svg" alt="">
-                            </div>
                             <div class="card-header">Поступления</div>
-                            <div class="card-body">
-                                <img src="images/basic-line-chart.svg" alt="">
+                            <div class="card-body" v-if="analytics">
+                                <LineChart :chart-data="analytics.data.incomes" :height="300"/>
                             </div>
                             <div class="card-header">Выводы</div>
-                            <div class="card-body">
-                                <img src="images/basic-line-chart.svg" alt="">
-                            </div>
-                            <div class="card-header">Рефералы</div>
-                            <div class="card-body">
-                                <img src="images/basic-line-chart.svg" alt="">
+                            <div class="card-body" v-if="analytics">
+                                <LineChart :chart-data="analytics.data.withdrawals" :height="300"/>
                             </div>
                         </div>
                     </div>
@@ -61,14 +53,16 @@
 
 <script>
 import TopMenu from "../components/TopMenu";
+import LineChart from "../components/chart/LineChart";
 
 export default {
     name: "Profile",
-    components: {TopMenu},
+    components: {TopMenu, LineChart},
     data: () => {
         return {
             userData: null,
-            QRCode: null
+            QRCode: null,
+            analytics: null
         }
     },
     async mounted() {
@@ -76,6 +70,8 @@ export default {
         this.userData = this.$store.getters.authorizedUser;
         await this.$store.dispatch('getCustomerQR', this.userData.id);
         this.QRCode = this.$store.getters.customerQR
+        await this.$store.dispatch('getCustomerAnalytics');
+        this.analytics = this.$store.getters.customerAnalytics;
     }
 }
 </script>
