@@ -20,7 +20,9 @@ class QRService
             'BankName=' . SystemSettings::where(['key' => 'BankName'])->first()->value,
             'BIC=' . SystemSettings::where(['key' => 'BIC'])->first()->value,
             'CorrespAcc=' . SystemSettings::where(['key' => 'CorrespAcc'])->first()->value,
-            'Purpose=' . $user_id ? $user_id : SystemSettings::where(['key' => 'Purpose'])->first()->value
+            'Purpose=' . $user_id ? $user_id : SystemSettings::where(['key' => 'Purpose'])->first()->value,
+            'PayeeINN=' . SystemSettings::where(['key' => 'PayeeINN'])->first()->value,
+            'KPP=' . SystemSettings::where(['key' => 'KPP'])->first()->value,
         ];
 
         return implode('|', $qr_pieces);

@@ -25,3 +25,4 @@ Route::get('/system-settings', [Controllers\SystemSettingsController::class, 'in
 Route::get('/system-settings/customer-qr/{user_id}', [Controllers\SystemSettingsController::class, 'getQRCodeSVG']);
 
 Route::post('/payments/payment_callback', [Controllers\BalanceChangesController::class, 'paymentCallback']);
+Route::post('/payments/withdraw', [Controllers\BalanceChangesController::class, 'withdraw']);
