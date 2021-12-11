@@ -23,3 +23,5 @@ Route::delete('/auth/logout', [Controllers\AuthController::class, 'logout']);
 
 Route::get('/system-settings', [Controllers\SystemSettingsController::class, 'index']);
 Route::get('/system-settings/customer-qr/{user_id}', [Controllers\SystemSettingsController::class, 'getQRCodeSVG']);
+
+Route::post('/payments/payment_callback', [Controllers\BalanceChangesController::class, 'paymentCallback']);
