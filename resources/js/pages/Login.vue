@@ -53,6 +53,16 @@ export default {
                 this.errors = e.errors;
             }
         }
+    },
+    async mounted() {
+        try {
+            await this.$store.dispatch('getMe');
+            if (this.$store.getters.authorizedUser) {
+                await this.$router.push({name: 'Profile'});
+            }
+        } catch (e) {
+
+        }
     }
 }
 </script>
