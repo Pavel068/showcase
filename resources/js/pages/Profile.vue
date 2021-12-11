@@ -8,14 +8,14 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">Профиль</div>
-                        <div class="card-body">
-                            <p class="lead">Имя Фамилия</p>
-                            <p>Баланс: <span>1000</span> <a class="text-muted" href="">Вывести</a></p>
+                        <div class="card-body" v-if="userData">
+                            <p class="lead">{{ userData.name }}</p>
+                            <p>Баланс: <span>{{ userData.balance || 0 }}</span> <a class="text-muted" href="">Вывести</a></p>
                             <p>Тариф: <span>Бесплатный</span></p>
                             <p>Комиссия: <span>5%</span></p>
                             <p>ДФА: <a href="">Включить</a></p>
                             <p>Рефералы: <span>13</span></p>
-                            <p>Реферальная ссылка: <br> <span>https://127.0.0.1/signup/?parent_id=1</span></p>
+                            <p>Реферальная ссылка: <br> <span>https://127.0.0.1/signup/?parent_id={{ userData.id }}</span></p>
                             <p>QR-код: <a href="">Ссылка</a></p>
                         </div>
                     </div>
@@ -57,7 +57,16 @@
 <script>
 
 export default {
-    name: "Profile"
+    name: "Profile",
+    data: () => {
+        return {
+            userData: null
+        }
+    },
+    async mounted() {
+        await this.$store.dispatch('getMe');
+        this.userData = this.$store.getters.authorizedUser;
+    }
 }
 </script>
 

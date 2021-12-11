@@ -22,7 +22,7 @@
                             <h1 class="hero-title mt-0">Дай-На-Чай</h1>
                             <p class="hero-paragraph">Платформа для сбора и аналитики чаевых, выдаваемых при оказании услуг различных услуг</p>
                             <div class="hero-cta">
-                                <a class="button button-primary" href="#">Начать работу</a>
+                                <router-link class="button button-primary" :to="{name: 'Signup'}">Начать работу</router-link>
                                 <a class="button" href="#">Узнать подробнее</a>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                                         </ul>
                                     </div>
                                     <div class="pricing-table-cta mb-8">
-                                        <a class="button button-primary button-shadow button-block" href="#">Начать работу</a>
+                                        <router-link class="button button-primary button-shadow button-block" :to="{name: 'Signup'}">Начать работу</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                                         </ul>
                                     </div>
                                     <div class="pricing-table-cta mb-8">
-                                        <a class="button button-primary button-shadow button-block" href="#">Начать работу</a>
+                                        <router-link class="button button-primary button-shadow button-block" :to="{name: 'Signup'}">Начать работу</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
                     <div class="cta-inner section-inner">
                         <h3 class="section-title mt-0">Хотите продолжать работать и получать больше пассивного дохода?</h3>
                         <div class="cta-cta">
-                            <a class="button button-primary button-wide-mobile" href="#">Зарегистрироваться</a>
+                            <router-link class="button button-primary button-wide-mobile" :to="{name: 'Signup'}">Зарегистрироваться</router-link>
                         </div>
                     </div>
                 </div>
