@@ -7,9 +7,6 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="col-md-1">
-                    <button class="btn btn-secondary back-button" @click="$router.push({name: 'Index'})">Назад</button>
-                </div>
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">Профиль</div>
@@ -31,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">Аналитика</div>
                         <div class="card-body">
