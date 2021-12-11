@@ -55,6 +55,21 @@ class DatabaseSeeder extends Seeder
                 'value' => '773401001',
                 'meta' => 'КПП'
             ],
+            [
+                'key' => 'tax_free_tariff',
+                'value' => '5',
+                'meta' => 'Комиссия сервиса в % (бесплатный тариф)'
+            ],
+            [
+                'key' => 'tax_paid_tariff',
+                'value' => '2.5',
+                'meta' => 'Комиссия сервиса в % (платный тариф)'
+            ],
+            [
+                'key' => 'referral_tax',
+                'value' => '0.5',
+                'meta' => 'Отчисления от рефералов в %'
+            ],
         ]);
     }
 }

@@ -1,6 +1,8 @@
 <template>
     <nav class="navbar navbar-light bg-light justify-content-between fixed-top">
-        <a class="navbar-brand" @click="$router.push({name: 'Index'})">Дай-На-Чай</a>
+        <a class="navbar-brand" @click="$router.push({name: 'Index'})">
+            <img src="images/logo.png" style="height: 25px;" alt="">
+        </a>
         <form class="form-inline">
             <a class="btn btn-outline-info my-2 my-sm-0" @click="logout">Выйти</a>
         </form>
