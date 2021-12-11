@@ -8,7 +8,22 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/app.css">
     <title>{{env('APP_NAME')}}</title>
+
+    <style>
+        body {
+            color: #8A94A7 !important;
+        }
+
+        .card, card * {
+            color: #242830 !important;
+        }
+
+        .back-button {
+            font-size: 14px !important;
+        }
+    </style>
 </head>
+
 <body class="is-boxed has-animations">
 
 <div id="app">

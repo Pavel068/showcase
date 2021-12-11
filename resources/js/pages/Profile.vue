@@ -1,0 +1,58 @@
+<template>
+    <div class="body-wrap">
+        <div class="container-fluid">
+            <div class="row mt-5">
+                <div class="col-md-1">
+                    <button class="btn btn-secondary back-button" @click="$router.push({name: 'Index'})">Назад</button>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Профиль</div>
+                        <div class="card-body">
+                            <p class="lead">Имя Фамилия</p>
+                            <p>Баланс: <span>1000</span> <a class="text-muted" href="">Вывести</a></p>
+                            <p>Тариф: <span>Бесплатный</span></p>
+                            <p>ДФА: <a href="">Включить</a></p>
+                            <p>Рефералы: <span>13</span></p>
+                            <p>QR-код: <a href="">Ссылка</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="card">
+                        <div class="card-header">Аналитика</div>
+                        <div class="card-body">
+                            <div class="card-header">Баланс</div>
+                            <div class="card-body">
+                                <img src="images/basic-line-chart.svg" alt="">
+                            </div>
+                            <div class="card-header">Поступления</div>
+                            <div class="card-body">
+                                <img src="images/basic-line-chart.svg" alt="">
+                            </div>
+                            <div class="card-header">Выводы</div>
+                            <div class="card-body">
+                                <img src="images/basic-line-chart.svg" alt="">
+                            </div>
+                            <div class="card-header">Рефералы</div>
+                            <div class="card-body">
+                                <img src="images/basic-line-chart.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: "Profile"
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap-vue": "^2.21.2",
         "datejs": "^1.0.0-rc3",
         "howler": "^2.2.1",
         "js-cookie": "^2.2.1",
