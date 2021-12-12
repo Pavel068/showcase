@@ -15,9 +15,9 @@
                                 <label for="email">E-Mail</label>
                                 <input type="text" class="form-control" id="email" v-model="form.email">
                                 <label for="tariff">Тариф</label>
-                                <select name="tariff" id="tariff" class="form-control" v-model="form.tariff">
-                                    <option value="free">Бесплатный</option>
-                                    <option value="paid">$10/месяц</option>
+                                <select name="tariff" id="tariff" class="form-control" v-model="form.role">
+                                    <option value="customer">Бесплатный</option>
+                                    <option value="partner">$10/месяц</option>
                                 </select>
                                 <label for="password">Пароль</label>
                                 <input type="password" class="form-control" id="password" v-model="form.password">
@@ -48,7 +48,7 @@ export default {
             form: {
                 name: null,
                 email: null,
-                tariff: 'free',
+                role: 'customer',
                 password: null,
                 password_repeat: null
             },

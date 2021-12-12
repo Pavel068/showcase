@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BalanceChanges;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,9 +14,21 @@ class AnalyticsController extends Controller
         $this->middleware('jwt-auth:' . $this->getGuardId());
     }
 
-    public function systemAnalytics()
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function systemAnalytics(): \Illuminate\Http\JsonResponse
     {
-
+        try {
+            return $this->responseSuccess([
+                'total_users' => User::count(),
+                'partners' => User::where(['role' => 'partner'])->count(),
+                'tax_per_week' => 0,
+                'withdrawal_amount' => BalanceChanges::where(['type' => 'withdraw'])->sum('amount')
+            ]);
+        } catch (\Exception $e) {
+            return $this->responseError(['error' => 1], 400);
+        }
     }
 
     /**

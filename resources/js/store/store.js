@@ -9,14 +9,16 @@ const store = {
         access_token: Cookies.get('access_token'),
         system_settings: null,
         customer_qr: null,
-        customer_analytics: null
+        customer_analytics: null,
+        system_analytics: null,
     },
     getters: {
         authorizedUser: state => state.authorized_user,
         accessToken: state => state.access_token,
         systemSettings: state => state.system_settings,
         customerQR: state => state.customer_qr,
-        customerAnalytics: state => state.customer_analytics
+        customerAnalytics: state => state.customer_analytics,
+        systemAnalytics: state => state.system_analytics,
     },
     mutations: {
         setAuthorizedUser: (state, value) => state.authorized_user = value,
@@ -24,6 +26,7 @@ const store = {
         setSystemSettings: (state, value) => state.system_settings = value,
         setCustomerQR: (state, value) => state.customer_qr = value,
         setCustomerAnalytics: (state, value) => state.customer_analytics = value,
+        setSystemAnalytics: (state, value) => state.system_analytics = value,
     },
     actions: {
         async login(context, payload) {
@@ -69,6 +72,10 @@ const store = {
         async getCustomerAnalytics(context, payload) {
             const {data} = await axios.get('/api/analytics/customer/');
             context.commit('setCustomerAnalytics', data);
+        },
+        async getSystemAnalytics(context, payload) {
+            const {data} = await axios.get('/api/analytics/system/');
+            context.commit('setSystemAnalytics', data);
         }
     }
 }

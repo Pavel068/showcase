@@ -13,7 +13,7 @@
                         <div class="card-body" v-if="userData">
                             <p class="lead">{{ userData.name }}</p>
                             <p>Баланс: <span>{{ userData.balance || 0 }}</span> <a class="text-muted" href="">Вывести</a></p>
-                            <p>Тариф: <span>Бесплатный</span></p>
+                            <p>Тариф: <span>{{ userData.role === 'partner' ? '$10/месяц' : 'Бесплатный' }}</span></p>
                             <p>Комиссия: <span>5%</span></p>
                             <p>ДФА: <a href="">Включить</a></p>
                             <p>Рефералы: <span>0</span></p>
@@ -37,11 +37,11 @@
                         <div class="card-body">
                             <div class="card-header">Поступления</div>
                             <div class="card-body" v-if="analytics">
-                                <LineChart :chart-data="analytics.data.incomes" :height="300"/>
+                                <LineChart :chart-data="analytics.data.incomes" :height="300" :width="600"/>
                             </div>
                             <div class="card-header">Выводы</div>
                             <div class="card-body" v-if="analytics">
-                                <LineChart :chart-data="analytics.data.withdrawals" :height="300"/>
+                                <LineChart :chart-data="analytics.data.withdrawals" :height="300" :width="600"/>
                             </div>
                         </div>
                     </div>

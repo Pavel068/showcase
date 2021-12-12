@@ -36,22 +36,22 @@
                     <div class="card">
                         <div class="card-header">Аналитика сервиса</div>
                         <div class="card-body">
-                            <table class="table table-striped">
+                            <table class="table table-striped" v-if="systemAnalytics">
                                 <tr>
                                     <td>Кол-во пользователей</td>
-                                    <td>1</td>
+                                    <td>{{ systemAnalytics.data.total_users }}</td>
                                 </tr>
                                 <tr>
                                     <td>Платных тарифов</td>
-                                    <td>0</td>
+                                    <td>{{ systemAnalytics.data.partners }}</td>
                                 </tr>
                                 <tr>
                                     <td>Комиссия за неделю</td>
-                                    <td>0</td>
+                                    <td>{{ systemAnalytics.data.tax_per_week }}</td>
                                 </tr>
                                 <tr>
                                     <td>Сумма выплат</td>
-                                    <td>0</td>
+                                    <td>{{ systemAnalytics.data.withdrawal_amount }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -71,6 +71,7 @@ export default {
     data: () => {
         return {
             systemSettings: null,
+            systemAnalytics: null,
             form: {}
         }
     },
@@ -80,6 +81,8 @@ export default {
     async mounted() {
         await this.$store.dispatch('getSystemSettings');
         this.systemSettings = this.$store.getters.systemSettings;
+        await this.$store.dispatch('getSystemAnalytics');
+        this.systemAnalytics = this.$store.getters.systemAnalytics;
     }
 }
 </script>

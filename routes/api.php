@@ -28,3 +28,4 @@ Route::post('/payments/payment_callback', [Controllers\BalanceChangesController:
 Route::post('/payments/withdraw', [Controllers\BalanceChangesController::class, 'withdraw']);
 
 Route::get('/analytics/customer', [Controllers\AnalyticsController::class, 'customerAnalytics']);
+Route::get('/analytics/system', [Controllers\AnalyticsController::class, 'systemAnalytics']);

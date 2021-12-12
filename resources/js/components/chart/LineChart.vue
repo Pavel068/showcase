@@ -9,12 +9,21 @@ export default {
             labels: this.chartData.map(item => item.date),
             datasets: [{
                 label: '',
-                backgroundColor: '#14278c',
+                borderColor: '#14278c',
+                fill: false,
                 data: this.chartData.map(item => item.amount)
             }],
         }, {
             responsive: false,
-            maintainAspectRatio: true
+            maintainAspectRatio: true,
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         })
     }
 }
