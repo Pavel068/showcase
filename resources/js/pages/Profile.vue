@@ -75,27 +75,28 @@
 <script>
 import TopMenu from "../components/TopMenu";
 import LineChart from "../components/chart/LineChart";
+import user from "../mixins/user";
 
 export default {
     name: "Profile",
     components: {TopMenu, LineChart},
+    mixins: [user],
     data: () => {
         return {
-            userData: null,
             QRCode: null,
             analytics: null,
             withdrawals: null
         }
     },
     async mounted() {
-        await this.$store.dispatch('getMe');
-        this.userData = this.$store.getters.authorizedUser;
-        await this.$store.dispatch('getCustomerQR', this.userData.id);
-        this.QRCode = this.$store.getters.customerQR
-        await this.$store.dispatch('getCustomerAnalytics');
-        this.analytics = this.$store.getters.customerAnalytics;
-        await this.$store.dispatch('getWithdrawals', this.userData.id);
-        this.withdrawals = this.$store.getters.Withdrawals;
+        setTimeout(async () => {
+            await this.$store.dispatch('getCustomerQR', this.userData.id);
+            this.QRCode = this.$store.getters.customerQR
+            await this.$store.dispatch('getCustomerAnalytics');
+            this.analytics = this.$store.getters.customerAnalytics;
+            await this.$store.dispatch('getWithdrawals', this.userData.id);
+            this.withdrawals = this.$store.getters.Withdrawals;
+        }, 1000);
     }
 }
 </script>

@@ -92,6 +92,9 @@ const store = {
         },
         async rejectWithdrawal(context, payload) {
             const {data} = await axios.post(`/api/withdrawals/${payload}/reject`);
+        },
+        async saveSystemSettings(context, payload) {
+            const {data} = await axios.post(`/api/system-settings`, payload);
         }
     }
 }

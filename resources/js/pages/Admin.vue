@@ -28,7 +28,7 @@
                                 </tr>
                             </table>
 
-                            <button class="btn btn-success">Сохранить</button>
+                            <button class="btn btn-success" @click="saveSettings">Сохранить</button>
                         </div>
                     </div>
                 </div>
@@ -98,14 +98,15 @@ export default {
     components: {TopMenu},
     data: () => {
         return {
-            systemSettings: null,
             systemAnalytics: null,
-            form: {}
         }
     },
     computed: {
         withdrawals() {
             return this.$store.getters.Withdrawals;
+        },
+        systemSettings() {
+            return this.$store.getters.systemSettings;
         }
     },
     methods: {
@@ -117,11 +118,15 @@ export default {
         async reject() {
             await this.rejectWithdrawal(id);
             await this.$store.dispatch('getWithdrawals');
+        },
+        async saveSettings() {
+            await this.$store.dispatch('saveSystemSettings', this.systemSettings.data);
+            await this.$store.dispatch('getSystemSettings');
         }
     },
     async mounted() {
         await this.$store.dispatch('getSystemSettings');
-        this.systemSettings = this.$store.getters.systemSettings;
+
         await this.$store.dispatch('getSystemAnalytics');
         this.systemAnalytics = this.$store.getters.systemAnalytics;
         await this.$store.dispatch('getWithdrawals');

@@ -250,21 +250,11 @@
 </template>
 
 <script>
+import user from "../mixins/user";
+
 export default {
     name: "Index",
-    data: () => {
-        return {
-            userData: null
-        }
-    },
-    async mounted() {
-        try {
-            await this.$store.dispatch('getMe');
-            this.userData = this.$store.getters.authorizedUser;
-        } catch (e) {
-
-        }
-    }
+    mixins: [user],
 }
 </script>
 

@@ -22,6 +22,18 @@ class SystemSettingsController extends Controller
         return $this->responseSuccess(SystemSettings::all());
     }
 
+    public function saveSettings(Request $request)
+    {
+        $data = $request->post();
+        foreach ($data as $item) {
+            SystemSettings::where(['key' => $item['key']])
+                ->update([
+                    'value' => $item['value'],
+                    'meta' => $item['meta']
+                ]);
+        }
+    }
+
     /**
      * @param $user_id
      * @return mixed
