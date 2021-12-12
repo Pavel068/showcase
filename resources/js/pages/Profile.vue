@@ -7,12 +7,12 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="card">
                         <div class="card-header">Профиль</div>
                         <div class="card-body" v-if="userData">
                             <p class="lead">{{ userData.name }}</p>
-                            <p>Баланс: <span>{{ userData.balance || 0 }}</span> <a class="text-muted" href="">Вывести</a></p>
+                            <p>Баланс: <span>{{ userData.balance || 0 }}</span> <router-link :to="{name: 'Withdraw'}">Вывести</router-link></p>
                             <p>Тариф: <span>{{ userData.role === 'partner' ? '$10/месяц' : 'Бесплатный' }}</span></p>
                             <p>Комиссия: <span>5%</span></p>
                             <p>ДФА: <a href="">Включить</a></p>
@@ -24,14 +24,28 @@
                         </div>
                     </div>
                     <div class="card mt-3">
-                        <div class="card-header">Конструктор визитки</div>
-                        <div class="card-body">
-                            <img style="width: 100%" src="images/visit-example.png" alt="">
-                            <button class="mt-3 btn btn-primary">Сохранить</button>
+                        <div class="card-header">Выводы денег</div>
+                        <div class="card-body" v-if="withdrawals">
+                            <table class="table">
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                    <th></th>
+                                </tr>
+                                <tr v-for="item in withdrawals.data">
+                                    <td>{{ Date.parse(item.created_at).toString('yyyy-MM-dd') }}</td>
+                                    <td>{{ item.amount }}</td>
+                                    <td>{{ item.status }}</td>
+                                    <td>
+                                        <button class="btn btn-danger">Отменить</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="card">
                         <div class="card-header">Аналитика</div>
                         <div class="card-body">
@@ -43,6 +57,13 @@
                             <div class="card-body" v-if="analytics">
                                 <LineChart :chart-data="analytics.data.withdrawals" :height="300" :width="600"/>
                             </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-header">Конструктор визитки</div>
+                        <div class="card-body">
+                            <img style="width: 100%" src="images/visit-example.png" alt="">
+                            <button class="mt-3 btn btn-primary">Сохранить</button>
                         </div>
                     </div>
                 </div>
@@ -62,7 +83,8 @@ export default {
         return {
             userData: null,
             QRCode: null,
-            analytics: null
+            analytics: null,
+            withdrawals: null
         }
     },
     async mounted() {
@@ -72,6 +94,8 @@ export default {
         this.QRCode = this.$store.getters.customerQR
         await this.$store.dispatch('getCustomerAnalytics');
         this.analytics = this.$store.getters.customerAnalytics;
+        await this.$store.dispatch('getWithdrawals', this.userData.id);
+        this.withdrawals = this.$store.getters.Withdrawals;
     }
 }
 </script>

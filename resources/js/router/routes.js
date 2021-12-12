@@ -3,6 +3,7 @@ import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
+import Withdrawal from "../pages/Withdrawal";
 
 export default [
     {
@@ -38,6 +39,15 @@ export default [
         component: Profile,
         meta: {
             title: `Профиль`,
+            auth: false,
+        }
+    },
+    {
+        path: '/withdraw',
+        name: 'Withdraw',
+        component: Withdrawal,
+        meta: {
+            title: `Вывод денег`,
             auth: false,
         }
     },

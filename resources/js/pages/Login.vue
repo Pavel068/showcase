@@ -1,11 +1,14 @@
 <template>
     <div class="body-wrap">
         <div class="container">
-            <div class="row mt-5">
-                <div class="col-md-1">
-                    <button class="btn btn-secondary back-button" @click="$router.push({name: 'Index'})">На главную</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <TopMenu/>
                 </div>
-                <div class="col-md-11">
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">Авторизация</div>
                         <div class="card-body">
@@ -26,14 +29,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import TopMenu from "../components/TopMenu";
+
 export default {
     name: "Login",
+    components: {TopMenu},
     data: () => {
         return {
             form: {

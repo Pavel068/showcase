@@ -11,6 +11,7 @@ const store = {
         customer_qr: null,
         customer_analytics: null,
         system_analytics: null,
+        withdrawals: null
     },
     getters: {
         authorizedUser: state => state.authorized_user,
@@ -19,6 +20,7 @@ const store = {
         customerQR: state => state.customer_qr,
         customerAnalytics: state => state.customer_analytics,
         systemAnalytics: state => state.system_analytics,
+        Withdrawals: state => state.withdrawals,
     },
     mutations: {
         setAuthorizedUser: (state, value) => state.authorized_user = value,
@@ -27,6 +29,7 @@ const store = {
         setCustomerQR: (state, value) => state.customer_qr = value,
         setCustomerAnalytics: (state, value) => state.customer_analytics = value,
         setSystemAnalytics: (state, value) => state.system_analytics = value,
+        setWithdrawals: (state, value) => state.withdrawals = value,
     },
     actions: {
         async login(context, payload) {
@@ -76,7 +79,14 @@ const store = {
         async getSystemAnalytics(context, payload) {
             const {data} = await axios.get('/api/analytics/system/');
             context.commit('setSystemAnalytics', data);
-        }
+        },
+        async getWithdrawals(context, payload) {
+            const {data} = await axios.get(`/api/withdrawals/${payload ? payload : ''}`);
+            context.commit('setWithdrawals', data);
+        },
+        async makeWithdrawal(context, payload) {
+            const {data} = await axios.post(`/api/withdrawals/`, payload);
+        },
     }
 }
 

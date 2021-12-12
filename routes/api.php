@@ -29,3 +29,11 @@ Route::post('/payments/withdraw', [Controllers\BalanceChangesController::class, 
 
 Route::get('/analytics/customer', [Controllers\AnalyticsController::class, 'customerAnalytics']);
 Route::get('/analytics/system', [Controllers\AnalyticsController::class, 'systemAnalytics']);
+
+Route::get('/withdrawals/{user_id}', [Controllers\WithdrawalController::class, 'getWithdrawals']);
+Route::post('/withdrawals', [Controllers\WithdrawalController::class, 'withdraw']);
+Route::delete('/withdrawals/{id}', [Controllers\WithdrawalController::class, 'cancelWithdraw']);
+
+Route::get('/withdrawals', [Controllers\WithdrawalController::class, 'getWithdrawals']);
+Route::post('/withdrawals/{id}/confirm', [Controllers\WithdrawalController::class, 'confirmWithdraw']);
+Route::post('/withdrawals/{id}/reject', [Controllers\WithdrawalController::class, 'rejectWithdraw']);
