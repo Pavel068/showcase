@@ -56,6 +56,33 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">Запросы на вывод</div>
+                        <div class="card-body" v-if="withdrawals">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Пользователь</th>
+                                    <th>Сумма</th>
+                                    <th>Дата</th>
+                                    <th>Статус</th>
+                                    <th></th>
+                                </tr>
+                                <tr v-for="item in withdrawals.data">
+                                    <td>{{ item.user.name }} ({{ item.user.id }})</td>
+                                    <td>{{ item.amount }}</td>
+                                    <td>{{ Date.parse(item.created_at).toString('yyyy-MM-dd') }}</td>
+                                    <td>{{ item.status }}</td>
+                                    <td class="actions">
+                                        <template v-if="item.status === 'new'">
+                                            <button class="btn btn-success" @click="confirm(item.id)">Одобрить</button>
+                                            <button class="btn btn-danger" @click="reject(item.id)">Отклонить</button>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +91,7 @@
 
 <script>
 import TopMenu from "../components/TopMenu";
+import {mapActions} from "vuex";
 
 export default {
     name: "Admin",
@@ -75,18 +103,34 @@ export default {
             form: {}
         }
     },
+    computed: {
+        withdrawals() {
+            return this.$store.getters.Withdrawals;
+        }
+    },
     methods: {
-
+        ...mapActions(['confirmWithdrawal', 'rejectWithdrawal']),
+        async confirm(id) {
+            await this.confirmWithdrawal(id);
+            await this.$store.dispatch('getWithdrawals');
+        },
+        async reject() {
+            await this.rejectWithdrawal(id);
+            await this.$store.dispatch('getWithdrawals');
+        }
     },
     async mounted() {
         await this.$store.dispatch('getSystemSettings');
         this.systemSettings = this.$store.getters.systemSettings;
         await this.$store.dispatch('getSystemAnalytics');
         this.systemAnalytics = this.$store.getters.systemAnalytics;
+        await this.$store.dispatch('getWithdrawals');
     }
 }
 </script>
 
 <style scoped>
-
+    .actions button {
+        width: 100%;
+    }
 </style>

@@ -38,7 +38,7 @@
                                     <td>{{ item.amount }}</td>
                                     <td>{{ item.status }}</td>
                                     <td>
-                                        <button class="btn btn-danger">Отменить</button>
+                                        <button v-if="item.status === 'new'" class="btn btn-danger">Отменить</button>
                                     </td>
                                 </tr>
                             </table>

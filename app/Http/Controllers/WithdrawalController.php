@@ -44,18 +44,45 @@ class WithdrawalController extends Controller
         }
     }
 
-    public function cancelWithdraw($id)
+    protected function changeWithdrawStatus($id, $status)
     {
+        $withdraw = Withdrawal::where(['id' => $id])->first();
 
+        if (!$withdraw) {
+            return $this->responseError(['error' => 1]);
+        }
+
+        $withdraw->status = $status;
+        $withdraw->save();
+        $withdraw->refresh();
+
+        return $withdraw;
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function cancelWithdraw($id): \Illuminate\Http\JsonResponse
+    {
+        return $this->changeWithdrawStatus($id, 'cancelled');
+    }
+
+    /**
+     * @param $id
+     * @return Withdrawal|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\Illuminate\Http\JsonResponse|object
+     */
     public function confirmWithdraw($id)
     {
-
+        return $this->changeWithdrawStatus($id, 'confirmed');
     }
 
+    /**
+     * @param $id
+     * @return Withdrawal|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\Illuminate\Http\JsonResponse|object
+     */
     public function rejectWithdraw($id)
     {
-
+        return $this->changeWithdrawStatus($id, 'rejected');
     }
 }

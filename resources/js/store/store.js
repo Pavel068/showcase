@@ -87,6 +87,12 @@ const store = {
         async makeWithdrawal(context, payload) {
             const {data} = await axios.post(`/api/withdrawals/`, payload);
         },
+        async confirmWithdrawal(context, payload) {
+            const {data} = await axios.post(`/api/withdrawals/${payload}/confirm`);
+        },
+        async rejectWithdrawal(context, payload) {
+            const {data} = await axios.post(`/api/withdrawals/${payload}/reject`);
+        }
     }
 }
 
